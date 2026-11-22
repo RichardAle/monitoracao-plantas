@@ -1,6 +1,6 @@
 ---
 name: botanical-domain-reference
-description: Provides authoritative botanical, agronomic, diagnostic, pet-safety, and urban-horticulture domain knowledge for plant database modeling, Trefle/Perenual ingestion, watering and care engines, symptom diagnosis, and safety alerts. Use whenever @pm, @architect, @sm, @dev, or @qa works on these plant-domain concerns.
+description: Provides authoritative botanical, agronomic, diagnostic, pet-safety, urban-horticulture, bonsai, and external-api domain knowledge for plant database modeling, watering and care engines, symptom diagnosis, safety alerts, and asynchronous API ingestion. Use whenever @pm, @architect, @sm, @dev, or @qa works on these plant-domain concerns.
 ---
 
 # Botanical Domain Reference
@@ -48,10 +48,13 @@ Do not load all domain files at once. Start with the routing category that match
 | Watering, substrate, drainage, pot sizing, microclimate, fertilization | `_bmad-output/domain/02-watering-algorithms.md` |
 | Symptom diagnosis, pests, diseases, deficiencies, controls | `_bmad-output/domain/03-diagnostics-matrix.md` |
 | Toxicity, pets, children, poisonous preparations, domestic safety blocks | `_bmad-output/domain/04-pet-safety.md` |
-| Urban cultivation, pot volume, soil audit, contamination, small-space gardening | `_bmad-output/domain/05-urban-horticulture.md` |
+| Urban cultivation, pot volume, soil audit, contamination, small-space gardening | `_bmad-output/domain/05-urban-horticulture.md` (not currently present; no file should be invented or loaded) |
 | Bonsai styling, pruning, wiring, miniaturization, feeding, or soil exchange | `_bmad-output/domain/06-bonsai-management.md` |
+| External API/seed/geoclimate contracts, provenance, quotas, merge priorities | `_bmad-output/domain/07-external-apis-contract.md` |
 
 ## API Enrichment Boundary
+
+Route `_bmad-output/domain/07-external-apis-contract.md` for all external API and geoclimate ingestion questions. Its hybrid contract covers Perenual, Trefle, Flora and Funga do Brasil/Reflora, Embrapa AgroAPI, INMET, and Open-Meteo.
 
 ### Trefle API
 
@@ -73,6 +76,12 @@ Use Perenual ingestion to enrich interior ornamental catalog records:
 - Toxicity flags for dogs, cats, and children.
 
 Perenual enrichment remains supplemental: watering frequency and thermal range must not supersede `_bmad-output/domain/02-watering-algorithms.md`, and toxicity flags cannot be more authoritative than the validated local pet-safety rules.
+
+### Additional API Sources
+
+- Use Flora and Funga do Brasil/Reflora only to validate accepted native taxonomy, synonyms, life form, endemism, and Brazilian occurrence.
+- Use Embrapa AgroAPI only to validate registered commercial bioinputs and defensives under Brazilian regulation; never bypass the residential safety blocks in `04-pet-safety.md`.
+- Use INMET or Open-Meteo only to periodically/geospatially adjust watering and thermal alerts derived from `02-watering-algorithms.md`.
 
 ### Mandatory Architectural Rules
 
@@ -122,3 +131,7 @@ Use Portuguese for:
 - Recommended next steps and uncertainty notices.
 
 Use English for source names and internal code identifiers only when the technical identifier is not user-facing.
+
+## Synchronization State
+
+The latest synchronization manifest is [`domain-sync-manifest.json`](./domain-sync-manifest.json). It contains the discovered file list, SHA-256 hashes, canonical routing status, duplicate detection, and UTC synchronization timestamp. Re-run `/sync-botanical-domain` after domain changes; it is an idempotent hash comparison, not a full-domain reload.
