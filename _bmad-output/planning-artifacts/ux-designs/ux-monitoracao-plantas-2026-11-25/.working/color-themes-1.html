@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Variações de tema — cuidado que cabe na rotina</title>
+  <style>
+    /* Canopy — fundo #F2F6F0; superfície #FFFFFF; texto #1B2B21; secundário #4A5E50; primária #245C3A; acento #C06A3B; borda #C7D5C8; compatível #1E5A37; atenção #795000; rever #9B3732 */
+    /* Sol & barro — fundo #FAF3E8; superfície #FFFDF8; texto #302319; secundário #66513E; primária #713D25; acento #9A5A18; borda #DDC8AD; compatível #315A3B; atenção #704600; rever #963B32 */
+    /* Herbário — fundo #F5F1F8; superfície #FFFFFF; texto #2C2234; secundário #5B4D63; primária #563A70; acento #9A4E58; borda #D7C9DF; compatível #315A43; atenção #704900; rever #963C35 */
+    /* Horizonte — fundo #EEF4F8; superfície #FFFFFF; texto #192C3A; secundário #4A5E6B; primária #164F70; acento #A84F36; borda #C5D5DF; compatível #245B43; atenção #704900; rever #963B32 */
+    /* Semente & papel — fundo #F5F2E9; superfície #FFFEFA; texto #292D25; secundário #555A4F; primária #45513A; acento #9A4D32; borda #D4D0C0; compatível #315B3B; atenção #704700; rever #943B33 */
+
+    :root {
+      color-scheme: light;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #202820;
+      background: #e9ede8;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 32px; }
+    .page { max-width: 1540px; margin: 0 auto; }
+    .intro { max-width: 760px; margin: 0 0 26px; }
+    .eyebrow { color: #47574b; font-size: .76rem; font-weight: 750; letter-spacing: .11em; text-transform: uppercase; }
+    h1 { margin: 8px 0; font-size: clamp(1.7rem, 3vw, 2.45rem); line-height: 1.12; letter-spacing: -.035em; }
+    .intro p { color: #435047; line-height: 1.55; margin: 8px 0 0; }
+    .themes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 430px), 1fr)); gap: 20px; align-items: start; }
+    .theme {
+      --bg: #F2F6F0; --surface: #FFFFFF; --text: #1B2B21; --muted: #4A5E50;
+      --primary: #245C3A; --accent: #C06A3B; --border: #C7D5C8;
+      --good: #1E5A37; --caution: #795000; --review: #9B3732;
+      color: var(--text); background: var(--bg); border: 1px solid var(--border);
+      border-radius: 20px; padding: 20px; box-shadow: 0 8px 24px #17251b14;
+    }
+    .theme header { margin-bottom: 15px; }
+    .theme h2 { font-size: 1.25rem; line-height: 1.2; margin: 0 0 5px; }
+    .register { color: var(--muted); font-size: .9rem; margin: 0; }
+    .tokens { display: flex; flex-wrap: wrap; gap: 7px; padding: 0; margin: 14px 0 17px; list-style: none; }
+    .token { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--border); border-radius: 999px; background: var(--surface); padding: 5px 8px; color: var(--text); font-size: .72rem; line-height: 1.15; }
+    .swatch { width: 13px; height: 13px; flex: 0 0 13px; border: 1px solid #0003; border-radius: 50%; background: var(--swatch); }
+    .demo { background: var(--surface); border: 1px solid var(--border); border-radius: 15px; padding: 17px; }
+    .demo-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; color: var(--muted); font-size: .78rem; font-weight: 650; }
+    .tag { border: 1px solid var(--border); border-radius: 999px; padding: 4px 8px; color: var(--primary); background: var(--bg); white-space: nowrap; }
+    .demo h3 { margin: 14px 0 5px; font-size: 1.15rem; line-height: 1.25; }
+    .demo .sub { margin: 0; color: var(--muted); font-size: .9rem; line-height: 1.45; }
+    .match { margin: 15px 0 12px; padding: 11px 12px; border-left: 4px solid var(--good); background: color-mix(in srgb, var(--good) 8%, var(--surface)); border-radius: 8px; }
+    .match strong { display: block; color: var(--good); font-size: .91rem; }
+    .match p { color: var(--text); margin: 3px 0 0; font-size: .84rem; line-height: 1.4; }
+    .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 13px 0; }
+    .fact { border: 1px solid var(--border); border-radius: 10px; padding: 9px; }
+    .fact b { display: block; color: var(--muted); font-size: .72rem; margin-bottom: 3px; }
+    .fact span { font-size: .85rem; font-weight: 650; }
+    .note { border-top: 1px solid var(--border); padding-top: 10px; color: var(--muted); font-size: .75rem; line-height: 1.45; margin: 12px 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 8px; }
+    button { font: inherit; font-size: .83rem; font-weight: 700; min-height: 40px; padding: 8px 12px; border-radius: 10px; cursor: default; }
+    .primary { color: #fff; background: var(--primary); border: 2px solid var(--primary); }
+    .secondary { color: var(--primary); background: var(--surface); border: 2px solid var(--primary); }
+    .legend { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 0; }
+    .state { border: 1px solid var(--border); border-radius: 7px; padding: 4px 7px; background: var(--surface); font-size: .7rem; color: var(--text); }
+    .state b { font-size: .78rem; }
+    .good { color: var(--good); } .caution { color: var(--caution); } .review { color: var(--review); }
+    button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+    .canopy { --bg:#F2F6F0; --surface:#FFFFFF; --text:#1B2B21; --muted:#4A5E50; --primary:#245C3A; --accent:#C06A3B; --border:#C7D5C8; --good:#1E5A37; --caution:#795000; --review:#9B3732; }
+    .barro { --bg:#FAF3E8; --surface:#FFFDF8; --text:#302319; --muted:#66513E; --primary:#713D25; --accent:#9A5A18; --border:#DDC8AD; --good:#315A3B; --caution:#704600; --review:#963B32; }
+    .herbario { --bg:#F5F1F8; --surface:#FFFFFF; --text:#2C2234; --muted:#5B4D63; --primary:#563A70; --accent:#9A4E58; --border:#D7C9DF; --good:#315A43; --caution:#704900; --review:#963C35; }
+    .horizonte { --bg:#EEF4F8; --surface:#FFFFFF; --text:#192C3A; --muted:#4A5E6B; --primary:#164F70; --accent:#A84F36; --border:#C5D5DF; --good:#245B43; --caution:#704900; --review:#963B32; }
+    .semente { --bg:#F5F2E9; --surface:#FFFEFA; --text:#292D25; --muted:#555A4F; --primary:#45513A; --accent:#9A4D32; --border:#D4D0C0; --good:#315B3B; --caution:#704700; --review:#943B33; }
+    @media (max-width: 600px) { body { padding: 17px; } .theme { padding: 15px; } .facts { grid-template-columns: 1fr; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="intro" aria-labelledby="page-title">
+      <div class="eyebrow">Exploração de linguagem visual · tela pré-compra</div>
+      <h1 id="page-title">Um cuidado que cabe na sua rotina</h1>
+      <p>Cinco caminhos semânticos para comparar necessidades de cuidado com o perfil da pessoa antes da compra. A demonstração usa conteúdo de amostra; não é uma recomendação botânica validada.</p>
+    </section>
+    <div class="themes">
+      <article class="theme canopy" aria-labelledby="canopy-title">
+        <header><h2 id="canopy-title">1. Dossel tranquilo</h2><p class="register">Natural e estável — confiança serena, sem pressa.</p></header>
+        <ul class="tokens" aria-label="Papéis semânticos de cor">
+          <li class="token"><i class="swatch" style="--swatch:var(--bg)"></i>Fundo</li><li class="token"><i class="swatch" style="--swatch:var(--surface)"></i>Superfície</li><li class="token"><i class="swatch" style="--swatch:var(--text)"></i>Texto</li><li class="token"><i class="swatch" style="--swatch:var(--muted)"></i>Secundário</li><li class="token"><i class="swatch" style="--swatch:var(--primary)"></i>Primária</li><li class="token"><i class="swatch" style="--swatch:var(--accent)"></i>Acento</li><li class="token"><i class="swatch" style="--swatch:var(--border)"></i>Borda</li><li class="token"><i class="swatch" style="--swatch:var(--good)"></i>Compatível</li><li class="token"><i class="swatch" style="--swatch:var(--caution)"></i>Atenção</li><li class="token"><i class="swatch" style="--swatch:var(--review)"></i>Rever</li>
+        </ul>
+        <section class="demo" aria-label="Exemplo de tela de comparação">
+          <div class="demo-top"><span>SEU PERFIL DE CUIDADO</span><span class="tag">Pré-compra</span></div>
+          <h3>Veja se combina com seu espaço</h3><p class="sub">Compare o que você tem disponível com o que esta planta pode precisar.</p>
+          <div class="match"><strong>✓ Boa compatibilidade · exemplo</strong><p>Os dados ilustrativos parecem combinar com o perfil informado.</p></div>
+          <div class="facts"><div class="fact"><b>Seu espaço</b><span>Luz indireta · ventilado</span></div><div class="fact"><b>Exemplo de necessidade</b><span>Luz indireta</span></div></div>
+          <p class="note">Demonstração fictícia: confirme as necessidades desta espécie em fonte confiável. O cuidado pode variar conforme o ambiente.</p>
+          <div class="actions"><button class="primary">Comparar outra planta</button><button class="secondary">Ver alternativas</button></div>
+          <div class="legend" aria-label="Estados com rótulos textuais"><span class="state"><b class="good">✓</b> Compatível</span><span class="state"><b class="caution">!</b> Confira um detalhe</span><span class="state"><b class="review">↻</b> Veja outra opção</span></div>
+        </section>
+      </article>
+      <article class="theme barro" aria-labelledby="barro-title">
+        <header><h2 id="barro-title">2. Sol &amp; barro</h2><p class="register">Acolhedor e artesanal — proximidade, calor e simplicidade.</p></header>
+        <ul class="tokens" aria-label="Papéis semânticos de cor">
+          <li class="token"><i class="swatch" style="--swatch:var(--bg)"></i>Fundo</li><li class="token"><i class="swatch" style="--swatch:var(--surface)"></i>Superfície</li><li class="token"><i class="swatch" style="--swatch:var(--text)"></i>Texto</li><li class="token"><i class="swatch" style="--swatch:var(--muted)"></i>Secundário</li><li class="token"><i class="swatch" style="--swatch:var(--primary)"></i>Primária</li><li class="token"><i class="swatch" style="--swatch:var(--accent)"></i>Acento</li><li class="token"><i class="swatch" style="--swatch:var(--border)"></i>Borda</li><li class="token"><i class="swatch" style="--swatch:var(--good)"></i>Compatível</li><li class="token"><i class="swatch" style="--swatch:var(--caution)"></i>Atenção</li><li class="token"><i class="swatch" style="--swatch:var(--review)"></i>Rever</li>
+        </ul>
+        <section class="demo" aria-label="Exemplo de tela de comparação">
+          <div class="demo-top"><span>SEU PERFIL DE CUIDADO</span><span class="tag">Pré-compra</span></div>
+          <h3>Veja se combina com seu espaço</h3><p class="sub">Compare o que você tem disponível com o que esta planta pode precisar.</p>
+          <div class="match"><strong>✓ Boa compatibilidade · exemplo</strong><p>Os dados ilustrativos parecem combinar com o perfil informado.</p></div>
+          <div class="facts"><div class="fact"><b>Seu espaço</b><span>Luz indireta · ventilado</span></div><div class="fact"><b>Exemplo de necessidade</b><span>Luz indireta</span></div></div>
+          <p class="note">Demonstração fictícia: confirme as necessidades desta espécie em fonte confiável. O cuidado pode variar conforme o ambiente.</p>
+          <div class="actions"><button class="primary">Comparar outra planta</button><button class="secondary">Ver alternativas</button></div>
+          <div class="legend" aria-label="Estados com rótulos textuais"><span class="state"><b class="good">✓</b> Compatível</span><span class="state"><b class="caution">!</b> Confira um detalhe</span><span class="state"><b class="review">↻</b> Veja outra opção</span></div>
+        </section>
+      </article>
+      <article class="theme herbario" aria-labelledby="herbario-title">
+        <header><h2 id="herbario-title">3. Herbário contemporâneo</h2><p class="register">Expressivo e cuidadoso — um toque autoral, ainda legível e calmo.</p></header>
+        <ul class="tokens" aria-label="Papéis semânticos de cor">
+          <li class="token"><i class="swatch" style="--swatch:var(--bg)"></i>Fundo</li><li class="token"><i class="swatch" style="--swatch:var(--surface)"></i>Superfície</li><li class="token"><i class="swatch" style="--swatch:var(--text)"></i>Texto</li><li class="token"><i class="swatch" style="--swatch:var(--muted)"></i>Secundário</li><li class="token"><i class="swatch" style="--swatch:var(--primary)"></i>Primária</li><li class="token"><i class="swatch" style="--swatch:var(--accent)"></i>Acento</li><li class="token"><i class="swatch" style="--swatch:var(--border)"></i>Borda</li><li class="token"><i class="swatch" style="--swatch:var(--good)"></i>Compatível</li><li class="token"><i class="swatch" style="--swatch:var(--caution)"></i>Atenção</li><li class="token"><i class="swatch" style="--swatch:var(--review)"></i>Rever</li>
+        </ul>
+        <section class="demo" aria-label="Exemplo de tela de comparação">
+          <div class="demo-top"><span>SEU PERFIL DE CUIDADO</span><span class="tag">Pré-compra</span></div>
+          <h3>Veja se combina com seu espaço</h3><p class="sub">Compare o que você tem disponível com o que esta planta pode precisar.</p>
+          <div class="match"><strong>✓ Boa compatibilidade · exemplo</strong><p>Os dados ilustrativos parecem combinar com o perfil informado.</p></div>
+          <div class="facts"><div class="fact"><b>Seu espaço</b><span>Luz indireta · ventilado</span></div><div class="fact"><b>Exemplo de necessidade</b><span>Luz indireta</span></div></div>
+          <p class="note">Demonstração fictícia: confirme as necessidades desta espécie em fonte confiável. O cuidado pode variar conforme o ambiente.</p>
+          <div class="actions"><button class="primary">Comparar outra planta</button><button class="secondary">Ver alternativas</button></div>
+          <div class="legend" aria-label="Estados com rótulos textuais"><span class="state"><b class="good">✓</b> Compatível</span><span class="state"><b class="caution">!</b> Confira um detalhe</span><span class="state"><b class="review">↻</b> Veja outra opção</span></div>
+        </section>
+      </article>
+      <article class="theme horizonte" aria-labelledby="horizonte-title">
+        <header><h2 id="horizonte-title">4. Horizonte claro</h2><p class="register">Claro e organizado — orientação confiável com energia gentil.</p></header>
+        <ul class="tokens" aria-label="Papéis semânticos de cor">
+          <li class="token"><i class="swatch" style="--swatch:var(--bg)"></i>Fundo</li><li class="token"><i class="swatch" style="--swatch:var(--surface)"></i>Superfície</li><li class="token"><i class="swatch" style="--swatch:var(--text)"></i>Texto</li><li class="token"><i class="swatch" style="--swatch:var(--muted)"></i>Secundário</li><li class="token"><i class="swatch" style="--swatch:var(--primary)"></i>Primária</li><li class="token"><i class="swatch" style="--swatch:var(--accent)"></i>Acento</li><li class="token"><i class="swatch" style="--swatch:var(--border)"></i>Borda</li><li class="token"><i class="swatch" style="--swatch:var(--good)"></i>Compatível</li><li class="token"><i class="swatch" style="--swatch:var(--caution)"></i>Atenção</li><li class="token"><i class="swatch" style="--swatch:var(--review)"></i>Rever</li>
+        </ul>
+        <section class="demo" aria-label="Exemplo de tela de comparação">
+          <div class="demo-top"><span>SEU PERFIL DE CUIDADO</span><span class="tag">Pré-compra</span></div>
+          <h3>Veja se combina com seu espaço</h3><p class="sub">Compare o que você tem disponível com o que esta planta pode precisar.</p>
+          <div class="match"><strong>✓ Boa compatibilidade · exemplo</strong><p>Os dados ilustrativos parecem combinar com o perfil informado.</p></div>
+          <div class="facts"><div class="fact"><b>Seu espaço</b><span>Luz indireta · ventilado</span></div><div class="fact"><b>Exemplo de necessidade</b><span>Luz indireta</span></div></div>
+          <p class="note">Demonstração fictícia: confirme as necessidades desta espécie em fonte confiável. O cuidado pode variar conforme o ambiente.</p>
+          <div class="actions"><button class="primary">Comparar outra planta</button><button class="secondary">Ver alternativas</button></div>
+          <div class="legend" aria-label="Estados com rótulos textuais"><span class="state"><b class="good">✓</b> Compatível</span><span class="state"><b class="caution">!</b> Confira um detalhe</span><span class="state"><b class="review">↻</b> Veja outra opção</span></div>
+        </section>
+      </article>
+      <article class="theme semente" aria-labelledby="semente-title">
+        <header><h2 id="semente-title">5. Semente &amp; papel</h2><p class="register">Discreto e editorial — naturalidade madura, foco no conteúdo.</p></header>
+        <ul class="tokens" aria-label="Papéis semânticos de cor">
+          <li class="token"><i class="swatch" style="--swatch:var(--bg)"></i>Fundo</li><li class="token"><i class="swatch" style="--swatch:var(--surface)"></i>Superfície</li><li class="token"><i class="swatch" style="--swatch:var(--text)"></i>Texto</li><li class="token"><i class="swatch" style="--swatch:var(--muted)"></i>Secundário</li><li class="token"><i class="swatch" style="--swatch:var(--primary)"></i>Primária</li><li class="token"><i class="swatch" style="--swatch:var(--accent)"></i>Acento</li><li class="token"><i class="swatch" style="--swatch:var(--border)"></i>Borda</li><li class="token"><i class="swatch" style="--swatch:var(--good)"></i>Compatível</li><li class="token"><i class="swatch" style="--swatch:var(--caution)"></i>Atenção</li><li class="token"><i class="swatch" style="--swatch:var(--review)"></i>Rever</li>
+        </ul>
+        <section class="demo" aria-label="Exemplo de tela de comparação">
+          <div class="demo-top"><span>SEU PERFIL DE CUIDADO</span><span class="tag">Pré-compra</span></div>
+          <h3>Veja se combina com seu espaço</h3><p class="sub">Compare o que você tem disponível com o que esta planta pode precisar.</p>
+          <div class="match"><strong>✓ Boa compatibilidade · exemplo</strong><p>Os dados ilustrativos parecem combinar com o perfil informado.</p></div>
+          <div class="facts"><div class="fact"><b>Seu espaço</b><span>Luz indireta · ventilado</span></div><div class="fact"><b>Exemplo de necessidade</b><span>Luz indireta</span></div></div>
+          <p class="note">Demonstração fictícia: confirme as necessidades desta espécie em fonte confiável. O cuidado pode variar conforme o ambiente.</p>
+          <div class="actions"><button class="primary">Comparar outra planta</button><button class="secondary">Ver alternativas</button></div>
+          <div class="legend" aria-label="Estados com rótulos textuais"><span class="state"><b class="good">✓</b> Compatível</span><span class="state"><b class="caution">!</b> Confira um detalhe</span><span class="state"><b class="review">↻</b> Veja outra opção</span></div>
+        </section>
+      </article>
+    </div>
+  </main>
+</body>
+</html>

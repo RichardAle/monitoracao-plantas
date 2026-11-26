@@ -3,6 +3,11 @@ node_modules/
 dist/
 build/
 coverage/
+.env
+.env.*
 web-bundles/
 *.lock
 *.log
+references-raw/
+*.pdf
+*.epub

@@ -1,0 +1,170 @@
+# **02 - Algoritmos de Rega, Solo, Microclima e Nutrição (`02-watering-algorithms.md`)**
+
+Regras de negócio determinísticas (SE [condição] ENTÃO [ação]) extraídas de todas as fontes bibliográficas do projeto (ESALQ/USP Bonsai, Plantas Ornamentais Pantanal Editora, Hortas em Pequenos Espaços, Guia ESALQ/USP e Cartilha FMUSP/FAPESP) para implementação no motor de recomendação e alertas do aplicativo.
+
+# **1. Regras de Rega e Balanço Hídrico**
+
+  - **R-REGA-01 (Coníferas e Pinheiros em Bonsai):**
+      - **SE** a espécie for Conífera / Pinheiro em bonsai (*Pinus*, *Juniperus*, etc.)
+      - **ENTÃO** alertar que a falta de rega responde por **90% das mortes**; programar rega diária (**1x/dia** em clima ameno e **2x/dia** em dias quentes e secos).
+  - **R-REGA-02 (Sensor Visual de Pó de Xaxim em Bonsai):**
+      - **SE** o bonsai possuir cobertura superficial de pó de xaxim **E** a coloração do pó ficar clara
+      - **ENTÃO** disparar alerta imediato de rega (indicador visual de secagem do substrato).
+  - **R-REGA-03 (Material do Vaso e Taxa de Evaporação):**
+      - **SE** o vaso cadastrado for de barro cru ou cimento
+      - **ENTÃO** aumentar a frequência de monitoramento hídrico, pois esses materiais secam significativamente mais rápido do que vasos de plástico, porcelana ou resina.
+  - **R-REGA-04 (Protocolo Pós-Transplante / Troca de Solo em Bonsai):**
+      - **SE** o bonsai passou por transplante ou troca de solo recentemente
+      - **ENTÃO** instruir permanência em local sombreado, fresco e úmido por no mínimo **15 dias**, sem permitir que o solo seque nem levemente (regar até **3x/dia** se necessário).
+  - **R-REGA-05 (Rega de Manutenção em Bonsais Gerais):**
+      - **SE** o bonsai estiver em fase de manutenção normal
+      - **ENTÃO** evitar exposição ao sol nas horas mais quentes do dia; regar **diariamente** ou **a cada 2 dias** (quando o solo secar), aplicando água em chuvisco leve até escorrer pelos furos de drenagem do fundo do vaso e evitando encharcamento contínuo (risco de podridão radicular).
+  - **R-REGA-06 (Planta Indicadora de Murcha em Espécies Rígidas):**
+      - **SE** a espécie em bonsai não apresentar murcha foliar visível quando sente falta de água (ex.: *Ilex*, *Pinus*, *Araucaria*)
+      - **ENTÃO** recomendar o cultivo conjunto de uma planta indicadora de sede no mesmo vaso (ex.: *Crepis japonica*), cujas folhas murcham rapidamente alertando o momento da rega.
+  - **R-REGA-07 (Pós-Desbaste / Raleio em Hortas):**
+      - **SE** o usuário realizar o desbaste ou raleio de mudas excedentes em cultivo por semeadura direta
+      - **ENTÃO** disparar alerta imediato para executar uma rega logo após o procedimento, acelerando a recuperação radicular das plantas remanescentes.
+  - **R-REGA-08 (Compensação de Índice Salino na Adubação Química):**
+      - **SE** o usuário registrar a aplicação de adubo químico (NPK granulado ou dissolvido)
+      - **ENTÃO** aumentar temporariamente a frequência/volume de rega recomendado, mantendo o substrato sempre úmido e fresco para compensar a elevação do índice salino e evitar murcha osmótica.
+  - **R-REGA-09 (Vasos Autoirrigáveis):**
+      - **SE** o recipiente cadastrado for do tipo vaso autoirrigável para cultivo individual de hortaliças
+      - **ENTÃO** alternar o modo de monitoramento de rega superficial para monitoramento de nível do reservatório inferior.
+  - **R-REGA-10 (Umidade Constante sem Encharcamento em Cenoura e Abobrinha):**
+      - **SE** a espécie for Cenoura ou Abobrinha
+      - **ENTÃO** manter o solo sempre/levemente úmido sem encharcamento, pois excesso de água apodrece raízes de cenoura.
+  - **R-REGA-11 (Demanda Hídrica vs. Drenagem em Romãzeira):**
+      - **SE** a espécie for Romãzeira
+      - **ENTÃO** suprir demanda hídrica elevada, mas bloquear cultivo em solo mal drenado ou sujeito a encharcamento.
+  - **R-REGA-12 (Alerta Hídrico Crítico na Floração/Frutificação da Jabuticabeira):**
+      - **SE** a espécie for Jabuticabeira **E** estiver na fase de floração ou frutificação
+      - **ENTÃO** elevar prioridade de alerta de umidade do solo, pois estiagem prolongada provoca abortamento de flores e frutos.
+  - **R-REGA-13 (Enxágue Foliar Pós-Pulverização Caseira e Avaliação de Mortalidade):**
+      - **SE** o usuário aplicar qualquer calda ou inseticida caseiro (sabão, vinagre, fumo, pimenta, óleo ou infusões) sobre hortaliças ou plantas ornamentais
+      - **ENTÃO** disparar alerta com cronômetro de 1 hora para verificar a mortalidade da praga e lavar as folhas e caules com água pura após 1 hora da aplicação, evitando fitotoxicidade e queimaduras por permanência prolongada na superfície vegetal.
+  - **R-REGA-14 (Proteção das Inflorescências na Rega de Tropicais - Bastão-do-imperador):**
+      - **SE** a espécie for Bastão-do-imperador (*Etlingera* spp.) ou tropical com brácteas em taça/cone
+      - **ENTÃO** programar irrigação diária na base sem encharcamento e **proibir molhar as inflorescências** (água acumulada nas brácteas favorece podridões e pragas).
+  - **R-REGA-15 (Regime Hídrico de Hemerocale em Vaso vs. Canteiro):**
+      - **SE** a espécie for Hemerocale (*Hemerocallis* spp.) cultivada em vaso (10 L miniaturas / 30 L portes grandes)
+      - **ENTÃO** elevar o monitoramento hídrico em relação ao canteiro, programando rega **2 vezes ao dia nos períodos mais quentes** (demanda de ~2,5 cm ou 18 L/semana no verão), garantindo drenagem livre e proteção contra sol/calor direto intenso no vaso.
+  - **R-REGA-16 (Regime Hídrico de Antúrio, Amarílis, Gengibre e Batata-doce Ornamental em Vaso):**
+      - **SE** a espécie ornamental tropical estiver em vaso
+      - **ENTÃO** ajustar a frequência conforme o grupo fisiológico: **Amarílis** (*Hippeastrum* em vaso de 14 cm) = regar **2 a 3 vezes por semana**; **Batata-doce ornamental** (cuia de 25 cm) = regar **1 vez ao dia** (ou **2 vezes ao dia** em dias muito quentes); **Antúrio** e **Gengibre ornamental** = manter o substrato constantemente úmido sem encharcamento (solo seco reduz o comprimento da haste floral do gengibre).
+
+# **2. Regras de Substrato, Recipientes, Drenagem e Troca de Solo**
+
+  - **R-SUB-01 (Profundidade Padrão de Recipientes):**
+      - **SE** o usuário cadastrar o cultivo de hortaliças folhosas, temperos ou frutos em vasos, jardineiras, canos de PVC, garrafas PET ou mini canteiros
+      - **ENTÃO** validar que a profundidade útil do recipiente seja de no mínimo **20 cm**.
+  - **R-SUB-02 (Profundidade para Raízes e Tubérculos):**
+      - **SE** a espécie selecionada pertencer ao grupo de raízes ou tubérculos (exceto rabanete)
+      - **ENTÃO** exigir recipiente ou canteiro com profundidade mínima de **25 cm** e alertar sobre ciclo de desenvolvimento mais longo.
+  - **R-SUB-03 (Preparo Base de Solo para Mini Canteiros):**
+      - **SE** o usuário preparar substrato do zero para recipientes urbanos
+      - **ENTÃO** orientar o uso de terra de barranco coletada entre **20 cm e 30 cm** de profundidade (livre de sementes de ervas daninhas), devidamente peneirada para remoção de torrões, misturada com adubo orgânico curtido, adubo químico NPK 4-14-8 e calcário para correção de pH baixo (ou mistura **2:1** de terra vegetal + composto orgânico sobre camada de argila expandida e manta bidim).
+  - **R-SUB-04 (Montagem de Vaso de Bonsai - Protocolo ESALQ/USP):**
+      - **SE** o usuário realizar o plantio ou transplante de bonsai
+      - **ENTÃO** cobrir o furo de drenagem com tela plástica, adicionar camada de areia grossa ou pedrisco, preencher com terra granulada, acomodar a planta (fixando com arames oxidáveis passados pelos furos e tela se necessário) e finalizar com camada superficial de pó de xaxim.
+  - **R-SUB-05 (Mistura Drenante 50/50 para Bonsai):**
+      - **SE** o usuário formular substrato para bonsai em bandeja rasa
+      - **ENTÃO** utilizar mistura de **50% solo rico em matéria orgânica + 50% pedriscos de no máximo 4 mm**, garantindo aeração, drenagem e desenvolvimento radicular.
+  - **R-SUB-06 (Periodicidade de Troca de Solo por Volume do Vaso):**
+      - **SE** o vaso de bonsai possuir volume de até **500 ml** (espécies gerais)
+      - **ENTÃO** agendar troca de solo a cada **6 meses**.
+  - **R-SUB-07 (Exceção de Troca de Solo para Coníferas de Clima Frio e Ginkgo):**
+      - **SE** o bonsai for *Cedrus* spp., *Pinus pinea*, *Ginkgo biloba* ou pinheiro de clima frio
+      - **ENTÃO** programar troca de solo apenas a cada **2 anos**, obrigatoriamente no **final do inverno e em dias frios**, independentemente do tamanho do vaso, evitando poda drástica de raízes.
+  - **R-SUB-08 (Incompatibilidade de Granulados em Substratos Drenantes de Bonsai):**
+      - **SE** a planta for um bonsai cultivado em substrato sem argila (ex.: 80% pedriscos, areia grossa ou argila tamisada/barro cozido)
+      - **ENTÃO** bloquear a recomendação de adubo NPK granulado na superfície ou mistura, pois a percolação rápida da água arrasta os sais concentrados para o interior do torrão e causa queima radicular.
+  - **R-SUB-09 (Cobertura Morta / Mulching e Proteção do Colo):**
+      - **SE** o usuário implantar canteiro ou vaso de hortaliças
+      - **ENTÃO** recomendar cobertura morta (mulching) com palha para reter umidade e suprimir invasoras, e alertar para nunca cobrir o colo da muda com terra durante o plantio.
+  - **R-SUB-10 (Parâmetros Físico-Químicos de Substratos Comerciais - IN 14/2004 e IN 25/2009):**
+      - **SE** o usuário cadastrar ou formular um substrato comercial ou composto orgânico para vasos
+      - **ENTÃO** validar as especificações técnicas: pH em água na faixa ideal de **5,5 a 6,5** (tolerância de ±0,5 ponto na rotulagem), Condutividade Elétrica (CE) com tolerância de ±0,3 mS/cm, Capacidade de Retenção de Água (CRA % p/p), umidade máxima de 50% (compostos mistos/vermicomposto) e relação C/N máxima de **20** (ou **14** para vermicomposto) para evitar imobilização microbiana de nitrogênio.
+  - **R-SUB-11 (Limitação de Volume Radicular, Compactação e Condicionadores de Substrato):**
+      - **SE** a planta ornamental for cultivada em vaso comercial (profundidade típica limitada a ~15 cm contra 0–40 cm de camada agricultável no solo livre)
+      - **ENTÃO** prevenir compactação física (resistência à penetração >= 1,3 MPa reduz o crescimento radicular em 50% e >= 3,5 MPa causa deformação morfológica) incorporando condicionadores conforme a necessidade hídrica: **fibra de coco** (retém 70–80% da porosidade total e alta aeração), **vermiculita** (absorve 5x sua massa, retém 60–65% da porosidade, pH neutro a ligeiramente alcalino e alta CTC; apresenta sinergismo com superfosfato simples no fornecimento de K, Ca e S), **perlita** (leve, retém 3–4x sua massa), **casca de pinus** (deve ser seca/compostada para eliminar taninos, fenóis e terpenos fitotóxicos) ou **polímeros hidroretentores (hidrogel)** para ampliar o armazenamento de água em mudas.
+  - **R-SUB-12 (Qualidade Química, Física e Biológica da Água de Irrigação):**
+      - **SE** o usuário utilizar água de reservatório, poço ou sistema de fertirrigação
+      - **ENTÃO** manter o pH da água entre **5,5 e 6,5** (faixa de máxima biodisponibilidade mineral), exigir filtragem (areia, disco ou tela) caso haja turbidez por argila/areia (risco de entupimento) e bloquear o uso de água com algas, fungos ou bactérias visíveis.
+  - **R-SUB-13 (Dimensionamento e Formulação de Vasos para Ornamentais IAC):**
+      - **SE** o usuário cadastrar ornamentais melhoradas para vaso
+      - **ENTÃO** validar o volume/recipiente e a mistura base: **Amarílis** = vaso plástico de **14 cm de diâmetro** com mistura **1:1 de solo argiloso e matéria orgânica** (pH 6,0–7,0); **Batata-doce ornamental** = vaso tipo **cuia de 25 cm de diâmetro** com substrato leve e aerado; **Hemerocale** = vaso de **10 L** (miniaturas) ou **30 L** (cultivares grandes) com mistura **1/3 terra vegetal + 1/3 terra comum + 1/3 esterco bem curtido**.
+
+# **3. Regras de Adubação e Nutrição Mineral/Orgânica**
+
+  - **R-ADUB-01 (Carência Pós-Transplante):**
+      - **SE** a planta passou por transplante ou troca de solo/vaso recentemente
+      - **ENTÃO** bloquear alertas de adubação por **60 dias** para fertilizantes dissolvidos e por **90 dias** para fertilizantes granulados.
+  - **R-ADUB-02 (Dosagem Progressiva Inicial):**
+      - **SE** o usuário iniciar o ciclo de adubação em um exemplar novo ou recém-estabelecido
+      - **ENTÃO** recomendar dose inicial bem abaixo da indicada pelo fabricante, aumentando gradualmente a cada **15 dias (quinzena)** ou **30 dias (mês)**.
+  - **R-ADUB-03 (Incorporação Prévia de Fósforo Insolúvel):**
+      - **SE** o usuário preparar substrato para plantio ou troca de solo de bonsai
+      - **ENTÃO** recomendar mistura prévia de fonte fosfatada insolúvel no solo — **farinha de ossos na dose de 50 g/kg** ou **fosfato de Araxá (5% a 30% do volume)** — separando o fósforo da matéria orgânica e do ferro (ex.: em camadas com vermiculita) para evitar retenção e indisponibilidade.
+  - **R-ADUB-04 (Estímulo à Floração e Frutificação):**
+      - **SE** a planta estiver categorizada como florífera ou frutífera
+      - **ENTÃO** recomendar adubação mensal contendo **Fósforo (P) e Boro (B)** durante a primavera, verão e outono.
+  - **R-ADUB-05 (Incompatibilidade Química e Restrição de Espécie do Nitrocálcio):**
+      - **SE** o usuário utilizar nitrocálcio dissolvido na fertirrigação
+      - **ENTÃO** proibir a mistura simultânea com outros adubos (para evitar precipitação de fosfato de cálcio insolúvel), agendando as aplicações em semanas separadas, e **proibir o uso em azaleias** (*Rhododendron* spp.).
+  - **R-ADUB-06 (Validação de Maturação de Adubo Orgânico / Esterco):**
+      - **SE** o usuário optar por esterco ou composto orgânico caseiro
+      - **ENTÃO** exigir verificação de cura (ausência de odor fétido e textura pulverizada) e sugerir o bioensaio do feijão (germinação em 5 dias + observação de fitotoxicidade por mais 7 dias no esterco puro); em caso de dúvida, aplicar apenas pequena quantidade em cobertura superficial.
+  - **R-ADUB-07 (Adubação Orgânica de Base, Calagem Dolomítica e Restrição de Cinzas):**
+      - **SE** o usuário preparar canteiro urbano de hortaliças
+      - **ENTÃO** incorporar 20 L/m² de matéria orgânica curtida (esterco de curral, composto ou húmus) + fina camada de cinza de forno a lenha/pizzaria peneirada (proibindo cinza de churrasqueira devido a gordura e sal) e aplicar 100 a 200 g/m² de calcário dolomítico (máximo 1x/ano; aplicar 2 meses antes do adubo químico NPK 4-14-8 para evitar queima radicular).
+  - **R-ADUB-08 (Monitoramento de Salinidade via Condutividade Elétrica - Método 1:2):**
+      - **SE** houver leitura de Condutividade Elétrica (CE em dS/m ou mS/cm, onde 1 mS/cm ≈ 640 mg/L de sais) no substrato ou solução nutritiva (medida nos horários mais amenos do dia)
+      - **ENTÃO** aplicar a ação correspondente:
+          - 0 a 0,25 dS/m (Muito baixo): fertirrigar com maior frequência;
+          - 0,26 a 0,75 dS/m (Baixo — ideal para mudas e espécies sensíveis): fertirrigar normalmente;
+          - 0,76 a 1,25 dS/m (Normal para culturas estabelecidas): fertirrigar ou irrigar conforme análise de crescimento;
+          - 1,26 a 1,75 dS/m (Alto — risco de perda de vigor no calor): suspender adubação e apenas irrigar;
+          - 1,76 a 2,25 dS/m (Muito alto — risco de queima foliar e murcha osmótica): realizar leve lixiviação do substrato com água pura;
+          - > 2,25 dS/m (Extremo): executar lixiviação imediata abundante.
+  - **R-ADUB-09 (Dose de Sais Solúveis por Grupo de Sensibilidade):**
+      - **SE** o usuário realizar adubação mineral em ornamentais de vaso
+      - **ENTÃO** ajustar a concentração total de sais (g/L) ao perfil da espécie: **Grupo 1** (avenca, bromélias, orquídeas — alta sensibilidade): base 0,5 g/L e complementar 1,0–2,0 g/L; **Grupo 2** (maioria das ornamentais envasadas): base 1,5 g/L e complementar 1,0–4,0 g/L; **Grupo 3** (crisântemo, cravo, rosa, aspargo — alta demanda): base 3,0 g/L e complementar 3,0–6,0 g/L.
+  - **R-ADUB-10 (Restrição à Adubação Foliar Rotineira de Macronutrientes):**
+      - **SE** o usuário solicitar plano de nutrição principal para ornamentais
+      - **ENTÃO** priorizar fornecimento via substrato/fertirrigação radicular (interceptação, fluxo de massa e difusão) e não recomendar aplicação foliar rotineira de macronutrientes como fonte principal.
+  - **R-ADUB-11 (Proporção Quantitativa de Substrato Base Embrapa e Biofertilizante de Minhocário):**
+      - **SE** o usuário preparar substrato a partir de terra de barranco (50 litros) ou utilizar compostagem/minhocário doméstico
+      - **ENTÃO** recomendar a proporção de 100 g de calcário dolomítico (ou cal hidratada) + 34 L de esterco de gado curtido (ou 17 L de esterco de galinha curtido) + 200 g de NPK 4-14-8 (ou termofosfatado) para cada 50 L de terra, balanceando composteiras pela relação C/N (serragem 160, bagaço de cana 84, esterco bovino 13, cama de frango 9, esterco de galinha 7) e diluindo o chorume de minhocário (*Eisenia foetida*) na água de irrigação.
+  - **R-ADUB-12 (Adubação Sazonal de Hemerocale, Zingiberáceas Tropicais e Fertirrigação em Cuia):**
+      - **SE** a espécie pertencer a um dos grupos ornamentais IAC abaixo
+      - **ENTÃO** aplicar o protocolo nutricional específico: **Hemerocale** = adubar **2 vezes ao ano** (meio do inverno/agosto para emissão de hastes e outono/março) ou usar adubo de liberação lenta **1 vez ao ano** (no plantio: 50 g/m² de NPK 4-14-8 + 2 kg/m² de esterco curtido); **Bastão-do-imperador e Gengibre ornamental** = aplicar **200 g/touceira de NPK 15-15-15** (parcelado 3x/ano no gengibre, atentando para Boro, Potássio e Cálcio no bastão-do-imperador); **Batata-doce ornamental em vaso** = fertirrigação com solução completa diluída em 1.000 L de água (238 g nitrato de cálcio, 368 g nitrato de potássio, 144 g DAP, 170 g sulfato de magnésio + micronutrientes).
+  - **R-ADUB-13 (Adubação de Base e Cobertura para Hortaliças Não-Convencionais / PANCs - Manual MAPA/Embrapa):**
+      - **SE** a espécie cultivada pertencer ao grupo de Hortaliças Não-Convencionais (PANCs / tradicionais)
+      - **ENTÃO** priorizar manejo orgânico e agroecológico (aproveitando sua alta rusticidade e resistência natural a pragas), fornecendo todo o Fósforo (P) e parte do Potássio (K) e do Nitrogênio (N) na adubação de base (plantio), seguidos de adubações de cobertura equilibradas com Nitrogênio, Potássio e matéria orgânica durante o ciclo.
+
+# **4. Regras de Espaçamento, Microclima e Aplicação de Insumos**
+
+  - **R-ESP-01 (Fator de Redução para Pequenos Espaços):**
+      - **SE** o ambiente de cultivo for apartamento, varanda ou mini canteiro urbano
+      - **ENTÃO** recalcular o espaçamento entre plantas para **70%** do espaçamento agrícola convencional da espécie (respeitando o mínimo operacional de 10 cm entre mudas).
+  - **R-CLI-01 (Insolação Mínima para Hortas Domésticas):**
+      - **SE** o cultivo for de hortaliças em apartamentos ou varandas
+      - **ENTÃO** exigir incidência mínima de **4 a 6 horas diárias** de luz solar direta.
+  - **R-CLI-02 (Janela Climática para Aplicação Foliar e Herbicidas):**
+      - **SE** a temperatura ambiente estiver muito elevada ou houver incidência de vento
+      - **ENTÃO** bloquear a aplicação de herbicidas de contato e pulverizações foliares em bonsais/plantas de vaso, evitando evaporação acelerada e deriva tóxica para a copa (especialmente em espécies ultrassensíveis como *Fortunella* / kunquat / kinzu).
+  - **R-CLI-03 (Proteção contra Frio Intenso em Ornamentais Sensíveis):**
+      - **SE** a espécie for *Hydrangea macrophylla* (hortênsia) ou tropical sensível **E** houver previsão de queda brusca de temperatura
+      - **ENTÃO** alertar risco de queima/escurecimento foliar pelo frio.
+  - **R-CLI-04 (Exigência Específica de Insolação por Cultura):**
+      - **SE** espécie = Cenoura ou Carambola **ENTÃO** priorizar sol pleno mas aceitar meia-sombra; **SE** espécie = Abobrinha **ENTÃO** aceitar sol pleno ou sombra parcial com alta luminosidade; **SE** espécie = Couve em clima quente **ENTÃO** recomendar área parcialmente sombreada para evitar redução de tamanho e amargor; **SE** espécie = Romãzeira **ENTÃO** exigir luz solar direta intensa.
+  - **R-CLI-05 (Classificação de Regimes de Luminosidade para Ornamentais):**
+      - **SE** a ficha da espécie ornamental indicar categoria de luminosidade
+      - **ENTÃO** aplicar os limiares operacionais: **Pleno sol** = mínimo de **4 a 6 horas/dia** de sol direto; **Meia-sombra** = luminosidade intensa, porém bloquear sol direto entre **10h00 e 17h00**; **Sombra** = proibir sol direto e garantir luz indireta por pelo menos **2 horas/dia**.
+  - **R-CLI-06 (Períodos de Carência Alimentar e Rotação de Caldas Naturais):**
+      - **SE** o usuário aplicar defensivo natural ou calda caseira em hortaliça destinada ao consumo humano
+      - **ENTÃO** bloquear a colheita conforme o período de carência específico do preparado (mínimo de 24 horas com lavagem obrigatória em água corrente para soluções caseiras suaves; média de 5 dias para extratos naturais gerais como nim, cebola, cravo-de-defunto e camomila; e 14 dias / 2 semanas para preparados com sabão neutro) e recomendar alternância/rotação das receitas ao longo do tempo para evitar resistência das pragas.
+  - **R-CLI-07 (Limiares Térmicos e Umidade Relativa para Tropicais IAC):**
+      - **SE** a espécie for tropical ornamental do catálogo IAC
+      - **ENTÃO** monitorar os tetos e pisos térmicos: **Antúrio** = temperatura entre **18°C e 28°C** e umidade relativa do ar em torno de **80%**; **Gengibre ornamental** = faixa ideal de **22°C a 28°C**, disparando alerta de frio abaixo de **15°C** (atrasa crescimento/floração e causa escurecimento/murcha precoce de brácteas); **Bastão-do-imperador** = faixa ideal de **20°C a 35°C** e umidade relativa de **70% a 80%** (solo ácido pH 4,5–6,5).

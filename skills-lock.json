@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "skills": {
+    "bmad-eval": {
+      "source": "bmad-code-org/BMAD-METHOD",
+      "commit": "e435a22574fe55722841086e5566420178b98df3",
+      "sourceType": "github",
+      "skillPath": "skills/toolsmith/bmad-eval/SKILL.md",
+      "computedHash": "4179aef6829831c254cb8b9469516df9ab9ec51ff5c14001440633f5f839cfcb"
+    },
+    "bmad-toolsmith": {
+      "source": "bmad-code-org/BMAD-METHOD",
+      "commit": "e435a22574fe55722841086e5566420178b98df3",
+      "sourceType": "github",
+      "skillPath": "skills/toolsmith/bmad-toolsmith/SKILL.md",
+      "computedHash": "f5c6def9e5551875f189743a6c27f6d1aec6ca3a71cf77e18457b06fd49850f9"
+    },
+    "bmod-toolsmith": {
+      "source": "bmad-code-org/BMAD-METHOD",
+      "commit": "e435a22574fe55722841086e5566420178b98df3",
+      "sourceType": "github",
+      "skillPath": "skills/toolsmith/bmod-toolsmith/SKILL.md",
+      "computedHash": "50caa5440f3f5f1a2d1b285a6e52594066eb352639b32f25b80f3dde1e35e362"
+    }
+  }
+}

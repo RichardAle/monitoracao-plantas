@@ -1,0 +1,6 @@
+# Local environment credentials
+.env
+.env.*
+
+# Generated or downloaded web bundles
+web-bundles/
