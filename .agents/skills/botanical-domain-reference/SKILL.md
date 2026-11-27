@@ -21,6 +21,7 @@ Activate this skill whenever `@pm`, `@architect`, `@sm`, `@dev`, or `@qa` is wor
 - Plant database modeling or plant catalog fields.
 - Trefle or Perenual ingestion, normalization, or seed scripts.
 - Watering, fertilization, drainage, substrate, pot, microclimate, pruning, or bonsai rules.
+- Urban horticulture, container sizing, contamination audits, small-space gardening, or natural defensives.
 - Symptom diagnosis, pests, diseases, nutritional deficiencies, or treatments.
 - Safety alerts involving pets, children, toxic plants, contaminated soil or water, or defensives.
 
@@ -48,7 +49,7 @@ Do not load all domain files at once. Start with the routing category that match
 | Watering, substrate, drainage, pot sizing, microclimate, fertilization | `_bmad-output/domain/02-watering-algorithms.md` |
 | Symptom diagnosis, pests, diseases, deficiencies, controls | `_bmad-output/domain/03-diagnostics-matrix.md` |
 | Toxicity, pets, children, poisonous preparations, domestic safety blocks | `_bmad-output/domain/04-pet-safety.md` |
-| Urban cultivation, pot volume, soil audit, contamination, small-space gardening | `_bmad-output/domain/05-urban-horticulture.md` (not currently present; no file should be invented or loaded) |
+| Urban cultivation, pot volume, soil audit, contamination, natural defensives, or small-space gardening | `_bmad-output/domain/05-urban-horticulture.md` |
 | Bonsai styling, pruning, wiring, miniaturization, feeding, or soil exchange | `_bmad-output/domain/06-bonsai-management.md` |
 | External API/seed/geoclimate contracts, provenance, quotas, merge priorities | `_bmad-output/domain/07-external-apis-contract.md` |
 

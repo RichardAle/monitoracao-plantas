@@ -1,12 +1,13 @@
 {
-  "synced_at": "2026-11-22T20:52:06Z",
-  "git_revision": "190f2d620ced2db892be65eaee18569f4472e192",
+  "synced_at": "2026-11-26T23:50:11Z",
+  "git_revision": "91d217caf9fc0d5aa2be4cbb78b644002f2494fa",
+  "previous_git_revision": "190f2d620ced2db892be65eaee18569f4472e192",
   "files": {
     "01-species-catalog.md": "11ef0bc32d8055d1cd24822e8a3e9ed2aae9e0deb7d6fed825e4df1025f53072",
     "02-watering-algorithms.md": "1f2e3007d085904ec67a9a3d900f0d27ef747118e3ac5f309d32921735253dd8",
     "03-diagnostics-matrix.md": "5ccb4c7c7edd19b9797cae39881ba85ab8f0ecd8b59a741c8e76be7e985e237d",
-    "04-pet-safety(1).md": "12d5a871286176531e7d8abdd451e4af28257b0fd8162134e499ea93ed2d348f",
     "04-pet-safety.md": "6aed57b1c674104faf66941deff6cf0bd30670426bd7d91d58261bb518d3050a",
+    "05-urban-horticulture.md": "a80662ba17f02a4146e741c992a4ee4309101696cb9fa99b0d570a04ebeb42b2",
     "06-bonsai-management.md": "d528b3e5f1dba01d573cc46d1a23a6d0fae918641ad1c6843624010d87623dac",
     "07-external-apis-contract.md": "2abc7024d6aed2c7df6693d0abf492b4545a0504d8eaab2e6927f791b916c4a1"
   },
@@ -32,9 +33,9 @@
       "route": "Pet/child safety, toxicity, hazardous inputs, and fail-safe blocks"
     },
     "05-urban-horticulture.md": {
-      "present": false,
-      "sha256": null,
-      "route": "Urban cultivation (file absent)"
+      "present": true,
+      "sha256": "a80662ba17f02a4146e741c992a4ee4309101696cb9fa99b0d570a04ebeb42b2",
+      "route": "Urban cultivation, containers, soil audit, contamination, natural defensives, and small-space gardening"
     },
     "06-bonsai-management.md": {
       "present": true,
@@ -47,8 +48,6 @@
       "route": "Asynchronous Trefle, Perenual, Flora/Funga, Embrapa and geoclimate API contracts"
     }
   },
-  "duplicate_files": [
-    "04-pet-safety(1).md"
-  ],
+  "duplicate_files": [],
   "removed_files": []
 }
